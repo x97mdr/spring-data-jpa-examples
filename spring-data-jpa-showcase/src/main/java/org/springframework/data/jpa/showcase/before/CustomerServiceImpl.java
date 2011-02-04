@@ -4,10 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.data.jpa.showcase.core.Customer;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
  * @author Oliver Gierke
  */
 @Repository
+@Transactional(readOnly = true)
 public class CustomerServiceImpl implements CustomerService {
 
     @PersistenceContext
@@ -25,7 +27,9 @@ public class CustomerServiceImpl implements CustomerService {
     /*
      * (non-Javadoc)
      * 
-     * @see org.geecon.hades.before.CustomerRepository#findById(java.lang.Long)
+     * @see
+     * org.springframework.data.jpa.showcase.before.CustomerService#findById
+     * (java.lang.Long)
      */
     @Override
     public Customer findById(Long id) {
@@ -37,26 +41,29 @@ public class CustomerServiceImpl implements CustomerService {
     /*
      * (non-Javadoc)
      * 
-     * @see org.geecon.hades.before.CustomerRepository#findAll()
+     * @see
+     * org.springframework.data.jpa.showcase.before.CustomerService#findAll()
      */
     @Override
-    @SuppressWarnings("unchecked")
     public List<Customer> findAll() {
 
-        return em.createQuery("from Customer c").getResultList();
+        return em.createQuery("select c from Customer c", Customer.class)
+                .getResultList();
     }
 
 
     /*
      * (non-Javadoc)
      * 
-     * @see org.geecon.hades.before.CustomerRepository#findAll(int, int)
+     * @see
+     * org.springframework.data.jpa.showcase.before.CustomerService#findAll(int,
+     * int)
      */
     @Override
-    @SuppressWarnings("unchecked")
     public List<Customer> findAll(int page, int pageSize) {
 
-        Query query = em.createQuery("from Customer c");
+        TypedQuery<Customer> query =
+                em.createQuery("select c from Customer c", Customer.class);
 
         query.setFirstResult(page * pageSize);
         query.setMaxResults(pageSize);
@@ -69,10 +76,11 @@ public class CustomerServiceImpl implements CustomerService {
      * (non-Javadoc)
      * 
      * @see
-     * org.geecon.hades.before.CustomerRepository#save(org.geecon.hades.before
-     * .Customer)
+     * org.springframework.data.jpa.showcase.before.CustomerService#save(org
+     * .springframework.data.jpa.showcase.core.Customer)
      */
     @Override
+    @Transactional
     public Customer save(Customer customer) {
 
         // Is new?
@@ -89,14 +97,16 @@ public class CustomerServiceImpl implements CustomerService {
      * (non-Javadoc)
      * 
      * @see
-     * org.geecon.hades.before.CustomerRepository#findByLastname(java.lang.String
-     * , int, int)
+     * org.springframework.data.jpa.showcase.before.CustomerService#findByLastname
+     * (java.lang.String, int, int)
      */
     @Override
-    @SuppressWarnings("unchecked")
     public List<Customer> findByLastname(String lastname, int page, int pageSize) {
 
-        Query query = em.createQuery("from Customer c where c.lastname = ?");
+        TypedQuery<Customer> query =
+                em.createQuery(
+                        "select c from Customer c where c.lastname = ?1",
+                        Customer.class);
 
         query.setParameter(1, lastname);
         query.setFirstResult(page * pageSize);

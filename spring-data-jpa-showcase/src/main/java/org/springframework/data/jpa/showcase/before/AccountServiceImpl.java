@@ -4,11 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.data.jpa.showcase.core.Account;
 import org.springframework.data.jpa.showcase.core.Customer;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Repository;
  * @author Oliver Gierke
  */
 @Repository
+@Transactional(readOnly = true)
 class AccountServiceImpl implements AccountService {
 
     @PersistenceContext
@@ -27,10 +29,11 @@ class AccountServiceImpl implements AccountService {
      * (non-Javadoc)
      * 
      * @see
-     * org.geecon.hades.before.AccountRepository#save(org.geecon.hades.before
-     * .Account)
+     * org.springframework.data.jpa.showcase.before.AccountService#save(org.
+     * springframework.data.jpa.showcase.core.Account)
      */
     @Override
+    @Transactional
     public Account save(Account account) {
 
         if (account.getId() == null) {
@@ -46,14 +49,15 @@ class AccountServiceImpl implements AccountService {
      * (non-Javadoc)
      * 
      * @see
-     * org.geecon.hades.before.AccountRepository#findByCustomer(org.geecon.hades
-     * .before.Customer)
+     * org.springframework.data.jpa.showcase.before.AccountService#findByCustomer
+     * (org.springframework.data.jpa.showcase.core.Customer)
      */
     @Override
-    @SuppressWarnings("unchecked")
     public List<Account> findByCustomer(Customer customer) {
 
-        Query query = em.createQuery("from Account a where a.customer = ?");
+        TypedQuery<Account> query =
+                em.createQuery("select a from Account a where a.customer = ?1",
+                        Account.class);
         query.setParameter(1, customer);
 
         return query.getResultList();
