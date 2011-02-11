@@ -8,31 +8,31 @@
 2. Issues
 ---------
 - Generics, simple queries, pagination (no metadata), is new?, arbitrary queries
-- Approach: step by step refactoring -> introduce Hades
+- Approach: step by step refactoring -> introduce Spring Data JPA
+
+5. AccountRepository
+--------------------
+- replace save(…)
+- findByCustomer -> show log -> method created from method name
+- explain proxy mechanism, method signature possibilities (@Param, return types)
+
+4. Explain general proxy mechanism, SimpleJpaRepository
+-------------------------------------------------
+- show JpaRepository interface
+- findAll(Pageable pageble) 
 
 3. CustomerRepository
 ---------------------
 - add dependency to CustomerServiceImpl
 - replace findById, findAll, save
 - run test
-
-4. Explain general proxy mechanism, SimpleJpaRepository
--------------------------------------------------
-- show GenericDao interface
-- findAll(Pageable pageble) 
-
-5. AccountRepository
---------------------
-- replace saven(…)
-- findByCustomer -> show log -> method created from method name
-- explain proxy mechanism, methods signature possibilities (@Param, return types, Pageable, Sort)
-- -> replace findByLastname(Pageable pageable) in CustomerService
+- explain extended method signature possibilities (Pageable, Sort)
+- replace findByLastname(Pageable pageable) in CustomerService
 
 6. First summary
 ----------------
 - implementation got obsolete
 - switch to after package
--- alter packages to .after, remove component scan element
 
 7. Custom implementation
 ------------------------
