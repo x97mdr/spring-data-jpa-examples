@@ -12,12 +12,12 @@ import org.springframework.data.jpa.showcase.snippets.AccountRepository;
  */
 public abstract class AccountRepositoryIntegrationTest {
 
-    private AccountRepository accountDao;
+    private AccountRepository accountRepository;
 
 
     public void removesExpiredAccountsCorrectly() throws Exception {
 
-        accountDao.removedExpiredAccounts(new LocalDate(2011, 1, 1));
-        assertThat(accountDao.count(), is(1L));
+        accountRepository.removedExpiredAccounts(new LocalDate(2011, 1, 1));
+        assertThat(accountRepository.count(), is(1L));
     }
 }
