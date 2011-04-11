@@ -48,7 +48,7 @@ public class CustomerRepositoryIntegrationTest extends AbstractShowcaseTest {
     @Test
     public void findsCustomerById() throws Exception {
 
-        Customer customer = repository.findById(2L);
+        Customer customer = repository.findOne(2L);
 
         assertThat(customer.getFirstname(), is("Carter"));
         assertThat(customer.getLastname(), is("Beauford"));

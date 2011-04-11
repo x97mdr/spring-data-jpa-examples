@@ -48,7 +48,7 @@ public class SimpleUserRepositorySample {
 
         user = repository.save(user);
 
-        assertEquals(user, repository.findById(user.getId()));
+        assertEquals(user, repository.findOne(user.getId()));
     }
 
 

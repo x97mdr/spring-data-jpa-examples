@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.example.domain.User;
 
 
@@ -40,6 +41,9 @@ class UserRepositoryImpl implements UserRepositoryCustom {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Autowired
+    private UserRepository repo;
 
 
     /**

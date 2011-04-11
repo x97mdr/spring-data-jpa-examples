@@ -25,12 +25,11 @@ public class CustomerRepositoryIntegrationTest {
 
     public void findsCustomersBySpecification() throws Exception {
 
-        Customer dave = repository.findById(1L);
+        Customer dave = repository.findOne(1L);
 
         LocalDate expiryLimit = new LocalDate(2011, 3, 1);
         List<Customer> result =
-                repository
-                        .findAll(where(accountExpiresBefore(expiryLimit)));
+                repository.findAll(where(accountExpiresBefore(expiryLimit)));
 
         assertThat(result.size(), is(1));
         assertThat(result, hasItems(dave));

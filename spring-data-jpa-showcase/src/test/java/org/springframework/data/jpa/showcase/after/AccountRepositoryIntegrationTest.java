@@ -29,7 +29,7 @@ public class AccountRepositoryIntegrationTest extends AbstractShowcaseTest {
     @Test
     public void findsCustomersAccounts() throws Exception {
 
-        Customer customer = customerRepository.findById(1L);
+        Customer customer = customerRepository.findOne(1L);
         List<Account> accounts = accountRepository.findByCustomer(customer);
 
         assertFalse(accounts.isEmpty());

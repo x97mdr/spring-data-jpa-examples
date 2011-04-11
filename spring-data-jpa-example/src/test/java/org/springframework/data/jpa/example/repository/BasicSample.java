@@ -35,7 +35,7 @@ public class BasicSample {
             Persistence.createEntityManagerFactory("jpa.sample.plain");
         em = factory.createEntityManager();
 
-        userRepository = SimpleJpaRepository.create(User.class, em);
+        userRepository = new SimpleJpaRepository<User, Long>(User.class, em);
 
         em.getTransaction().begin();
     }
@@ -61,6 +61,6 @@ public class BasicSample {
 
         user = userRepository.save(user);
 
-        assertEquals(user, userRepository.findById(user.getId()));
+        assertEquals(user, userRepository.findOne(user.getId()));
     }
 }

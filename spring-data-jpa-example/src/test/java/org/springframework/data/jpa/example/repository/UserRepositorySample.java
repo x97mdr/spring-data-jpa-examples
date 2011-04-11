@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.example.domain.User;
-import org.springframework.data.jpa.example.repository.UserRepository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +38,7 @@ public class UserRepositorySample {
 
         user = repository.save(user);
 
-        assertEquals(user, repository.findById(user.getId()));
+        assertEquals(user, repository.findOne(user.getId()));
     }
 
 
