@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.example.auditing.AuditableUser;
 import org.springframework.data.jpa.example.auditing.AuditorAwareImpl;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuditableUserSample {
 
     @Autowired
-    private Repository<AuditableUser, Long> repository;
+    private CrudRepository<AuditableUser, Long> repository;
 
     @Autowired
     private AuditorAwareImpl auditorAware;

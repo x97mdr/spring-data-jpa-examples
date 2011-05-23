@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.showcase.core.Account;
 import org.springframework.data.jpa.showcase.core.Customer;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.data.repository.Repository;
  * 
  * @author Oliver Gierke
  */
-public interface AccountRepository extends Repository<Account, Long>, AccountRepositoryCustom {
+public interface AccountRepository extends CrudRepository<Account, Long>, AccountRepositoryCustom {
 
     /**
      * Returns all accounts belonging to the given {@link Customer}.

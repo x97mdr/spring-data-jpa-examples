@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.jpa.example.domain.User;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 
 
 /**
@@ -21,7 +21,7 @@ import org.springframework.data.repository.Repository;
  */
 public class BasicSample {
 
-    private Repository<User, Long> userRepository;
+    private CrudRepository<User, Long> userRepository;
     private EntityManager em;
 
 
