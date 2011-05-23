@@ -31,7 +31,7 @@
 		<jpa.version>2.0.0</jpa.version>
 		<junit.version>4.8</junit.version>
 		<hibernate.version>3.5.6-Final</hibernate.version>
-		<slf4j.version>1.5.8</slf4j.version>
+		<slf4j.version>1.6.1</slf4j.version>
 		<aspectj.version>1.6.8</aspectj.version>
 		<jodatime.version>1.5.2</jodatime.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
