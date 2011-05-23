@@ -3,8 +3,8 @@ package org.springframework.data.jpa.example.repository.simple;
 import java.util.List;
 
 import org.springframework.data.jpa.example.domain.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 
@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
  * 
  * @author Oliver Gierke
  */
-public interface SimpleUserRepository extends JpaRepository<User, Long> {
+public interface SimpleUserRepository extends CrudRepository<User, Long> {
 
     /**
      * Find the user with the given username. This method will be translated

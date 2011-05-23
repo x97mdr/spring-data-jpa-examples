@@ -38,8 +38,6 @@ UserRepositoryCustom {
 
     private static final String COMPLICATED_SQL = "SELECT * FROM User";
 
-    @Autowired
-    private UserRepository repo;
 
     /*
      * (non-Javadoc)

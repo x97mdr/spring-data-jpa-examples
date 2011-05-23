@@ -42,8 +42,6 @@ class UserRepositoryImpl implements UserRepositoryCustom {
     @PersistenceContext
     private EntityManager em;
 
-    @Autowired
-    private UserRepository repo;
 
 
     /**
