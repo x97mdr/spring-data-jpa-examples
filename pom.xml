@@ -4,7 +4,7 @@
 
 	<groupId>org.springframework.data.jpa.examples</groupId>
 	<artifactId>spring-data-jpa-examples-parent</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>1.0.0.RC1</version>
 	<packaging>pom</packaging>
 
 	<name>Spring Data JPA sample projects</name>
@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.0.0.BUILD-SNAPSHOT</version>
+			<version>1.0.0.RC1</version>
 		</dependency>
 
 		<dependency>
