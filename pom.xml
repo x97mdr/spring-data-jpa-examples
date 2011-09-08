@@ -4,13 +4,13 @@
 
 	<groupId>org.springframework.data.jpa.examples</groupId>
 	<artifactId>spring-data-jpa-examples-parent</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>1.0.1.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>Spring Data JPA sample projects</name>
 	<description>Sample projects for Spring Data JPA</description>
 	<url>http://www.springframework.org/spring-data</url>
-	<inceptionYear>2010</inceptionYear>
+	<inceptionYear>2011</inceptionYear>
 
 	<modules>
 		<module>spring-data-jpa-example</module>
@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.0.0.RELEASE</version>
+			<version>1.0.1.RELEASE</version>
 		</dependency>
 
 		<dependency>
