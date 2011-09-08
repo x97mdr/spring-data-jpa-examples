@@ -13,11 +13,11 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface AccountRepository extends CrudRepository<Account, Long> {
 
-    /**
-     * Returns all accounts belonging to the given {@link Customer}.
-     * 
-     * @param customer
-     * @return
-     */
-    List<Account> findByCustomer(Customer customer);
+	/**
+	 * Returns all accounts belonging to the given {@link Customer}.
+	 * 
+	 * @param customer
+	 * @return
+	 */
+	List<Account> findByCustomer(Customer customer);
 }

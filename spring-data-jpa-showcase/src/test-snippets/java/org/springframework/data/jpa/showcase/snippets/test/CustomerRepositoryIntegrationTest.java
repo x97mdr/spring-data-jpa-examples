@@ -12,7 +12,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.showcase.after.CustomerRepository;
 import org.springframework.data.jpa.showcase.core.Customer;
 
-
 /**
  * Snippets to show the usage of {@link Specification}s.
  * 
@@ -20,18 +19,16 @@ import org.springframework.data.jpa.showcase.core.Customer;
  */
 public class CustomerRepositoryIntegrationTest {
 
-    CustomerRepository repository;
+	CustomerRepository repository;
 
+	public void findsCustomersBySpecification() throws Exception {
 
-    public void findsCustomersBySpecification() throws Exception {
+		Customer dave = repository.findOne(1L);
 
-        Customer dave = repository.findOne(1L);
+		LocalDate expiryLimit = new LocalDate(2011, 3, 1);
+		List<Customer> result = repository.findAll(where(accountExpiresBefore(expiryLimit)));
 
-        LocalDate expiryLimit = new LocalDate(2011, 3, 1);
-        List<Customer> result =
-                repository.findAll(where(accountExpiresBefore(expiryLimit)));
-
-        assertThat(result.size(), is(1));
-        assertThat(result, hasItems(dave));
-    }
+		assertThat(result.size(), is(1));
+		assertThat(result, hasItems(dave));
+	}
 }

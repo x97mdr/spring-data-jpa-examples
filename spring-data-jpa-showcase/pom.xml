@@ -13,6 +13,10 @@
     
     <name>Spring Data JPA showcase</name>
     <description>Sample project showing how Spring Data JPA eases implementing repositories over a plain JPA/Spring approach</description>
+    
+    <properties>
+    	<querydsl.version>2.1.1</querydsl.version>
+    </properties>
 
     <build>
     
@@ -71,5 +75,59 @@
 			</plugin>
         </plugins>
     </build>
+    
+    <profiles>
+    	<profile>
+    		<id>querydsl</id>
+    		<activation>
+    			<activeByDefault>true</activeByDefault>
+    		</activation>
+    		<dependencies>
+		    	<!-- QueryDsl -->
+				<dependency>
+					<groupId>com.mysema.querydsl</groupId>
+					<artifactId>querydsl-apt</artifactId>
+					<version>${querydsl.version}</version>
+					<scope>provided</scope>
+				</dependency>
+				
+				<dependency>
+					<groupId>com.mysema.querydsl</groupId>
+					<artifactId>querydsl-jpa</artifactId>
+					<version>${querydsl.version}</version>
+				</dependency>
+		    </dependencies>
+		    
+		    <repositories>
+		    	<repository>
+					<id>querydsl</id>
+					<name>QueryDsl</name>
+					<url>http://source.mysema.com/maven2/releases</url>
+				</repository>
+		    </repositories>
+		    
+		    <build>
+		    	<plugins>
+		    		<plugin>
+						<groupId>com.mysema.maven</groupId>
+						<artifactId>maven-apt-plugin</artifactId>
+						<version>1.0</version>
+						<executions>
+							<execution>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>process</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>target/generated-sources/queries</outputDirectory>
+									<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+		    	</plugins>
+		    </build>
+    	</profile>
+    </profiles>
 
 </project>
