@@ -1,4 +1,19 @@
-package org.springframework.data.jpa.example.repository;
+/*
+ * Copyright 2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.springframework.data.jpa.example.repository.custom;
 
 import java.util.List;
 
@@ -29,14 +44,14 @@ import org.springframework.data.jpa.example.domain.User;
  * &lt;jpa:repositories base-package=&quot;com.acme.repository&quot; /&gt;
  * </pre>
  * 
- * If you need to manually configure the custom instance see {@link UserRepositoryJdbcImpl} for an example.
+ * If you need to manually configure the custom instance see {@link UserRepositoryImplJdbc} for an example.
  * 
  * @author Oliver Gierke
+ * @author Thomas Darimont
  */
-class UserRepositoryImpl implements UserRepositoryCustom {
+public class UserRepositoryImpl implements UserRepositoryCustom {
 
-	@PersistenceContext
-	private EntityManager em;
+	@PersistenceContext private EntityManager em;
 
 	/**
 	 * Configure the entity manager to be used.
@@ -54,6 +69,7 @@ class UserRepositoryImpl implements UserRepositoryCustom {
 	public List<User> myCustomBatchOperation() {
 
 		CriteriaQuery<User> criteriaQuery = em.getCriteriaBuilder().createQuery(User.class);
+		criteriaQuery.select(criteriaQuery.from(User.class));
 		return em.createQuery(criteriaQuery).getResultList();
 	}
 }

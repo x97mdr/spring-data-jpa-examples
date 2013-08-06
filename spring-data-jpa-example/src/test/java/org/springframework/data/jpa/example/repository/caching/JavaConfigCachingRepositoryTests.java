@@ -24,29 +24,35 @@ import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.example.repository.InfrastructureConfig;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ContextConfiguration;
 
 /**
- * Java config to use Spring Data JPA alongside the Spring caching support.
- * 
- * @author Oliver Gierke
  * @author Thomas Darimont
  */
-@Configuration
-@EnableJpaRepositories
-@ImportResource("classpath:infrastructure.xml")
-@EnableCaching
-public class CachingConfiguration {
+@ContextConfiguration
+public class JavaConfigCachingRepositoryTests extends AbstractCachingRepositoryTests {
+	/**
+	 * Java config to use Spring Data JPA alongside the Spring caching support.
+	 * 
+	 * @author Oliver Gierke
+	 * @author Thomas Darimont
+	 */
+	@Configuration
+	@Import(InfrastructureConfig.class)
+	@EnableJpaRepositories
+	@EnableCaching
+	static class Config {
 
-	@Bean
-	public CacheManager cacheManager() {
+		@Bean
+		public CacheManager cacheManager() {
 
-		Cache cache = new ConcurrentMapCache("byUsername");
-
-		SimpleCacheManager manager = new SimpleCacheManager();
-		manager.setCaches(Arrays.asList(cache));
-
-		return manager;
+			Cache cache = new ConcurrentMapCache("byUsername");
+			SimpleCacheManager manager = new SimpleCacheManager();
+			manager.setCaches(Arrays.asList(cache));
+			return manager;
+		}
 	}
 }

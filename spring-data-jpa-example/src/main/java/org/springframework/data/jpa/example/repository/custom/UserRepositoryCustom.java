@@ -13,25 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.data.jpa.example.repository.caching;
+package org.springframework.data.jpa.example.repository.custom;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import java.util.List;
+
 import org.springframework.data.jpa.example.domain.User;
-import org.springframework.data.repository.CrudRepository;
 
 /**
- * User repository using Spring's caching abstraction.
+ * Interface for repository functionality that ought to be implemented manually.
  * 
  * @author Oliver Gierke
  * @author Thomas Darimont
  */
-public interface CachingUserRepository extends CrudRepository<User, Long> {
+public interface UserRepositoryCustom {
 
-	@Override
-	@CacheEvict("byUsername")
-	<S extends User> S save(S entity);
-
-	@Cacheable("byUsername")
-	User findByUsername(String username);
+	/**
+	 * Custom repository operation.
+	 * 
+	 * @return
+	 */
+	List<User> myCustomBatchOperation();
 }

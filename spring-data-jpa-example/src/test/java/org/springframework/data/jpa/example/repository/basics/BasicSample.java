@@ -1,4 +1,23 @@
-package org.springframework.data.jpa.example.repository;
+/*
+ * Copyright 2013 the original author or authors.
+ *
+ * Licenseimport static org.junit.Assert.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.data.jpa.example.domain.User;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.data.repository.CrudRepository;
+ess or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.springframework.data.jpa.example.repository.basics;
 
 import static org.junit.Assert.*;
 
@@ -17,6 +36,7 @@ import org.springframework.data.repository.CrudRepository;
  * This unit tests shows plain usage of {@link SimpleJpaRepository}.
  * 
  * @author Oliver Gierke
+ * @author Thomas Darimont
  */
 public class BasicSample {
 

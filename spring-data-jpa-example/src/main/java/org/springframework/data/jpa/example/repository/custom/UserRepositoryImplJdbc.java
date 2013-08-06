@@ -1,12 +1,32 @@
-package org.springframework.data.jpa.example.repository;
+/*
+ * Copyright 2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.springframework.data.jpa.example.repository.custom;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.example.domain.User;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Component;
 
 /**
  * Class with the implementation of the custom repository code. Uses JDBC in this case. For basic programatic setup see
@@ -27,10 +47,18 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
  * logic as the default postfix for custom DAO instances is {@code Impl}.
  * 
  * @author Oliver Gierke
+ * @author Thomas Darimont
  */
-class UserRepositoryJdbcImpl extends JdbcDaoSupport implements UserRepositoryCustom {
+@Profile("jdbc")
+@Component("userRepositoryImpl")
+public class UserRepositoryImplJdbc extends JdbcDaoSupport implements UserRepositoryCustom {
 
 	private static final String COMPLICATED_SQL = "SELECT * FROM User";
+
+	@Autowired
+	public UserRepositoryImplJdbc(DataSource dataSource) {
+		setDataSource(dataSource);
+	}
 
 	/*
 	 * (non-Javadoc)
