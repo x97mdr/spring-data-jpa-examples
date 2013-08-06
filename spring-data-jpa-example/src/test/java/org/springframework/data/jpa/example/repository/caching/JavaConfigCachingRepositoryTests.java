@@ -15,23 +15,15 @@
  */
 package org.springframework.data.jpa.example.repository.caching;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.jpa.example.domain.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.test.context.ContextConfiguration;
 
 /**
- * User repository using Spring's caching abstraction.
+ * Test cas to bootstratp the test case with Spring Data JPA and Spring Caching enabled through JavaConfig.
  * 
  * @author Oliver Gierke
  * @author Thomas Darimont
  */
-public interface CachingUserRepository extends CrudRepository<User, Long> {
+@ContextConfiguration(classes = CachingConfiguration.class)
+public class JavaConfigCachingRepositoryTests extends AbstractCachingRepositoryTests {
 
-	@Override
-	@CacheEvict("byUsername")
-	<S extends User> S save(S entity);
-
-	@Cacheable("byUsername")
-	User findByUsername(String username);
 }

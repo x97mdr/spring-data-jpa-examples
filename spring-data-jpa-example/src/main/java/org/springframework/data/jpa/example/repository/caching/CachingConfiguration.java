@@ -31,6 +31,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Java config to use Spring Data JPA alongside the Spring caching support.
  * 
  * @author Oliver Gierke
+ * @author Thomas Darimont
  */
 @Configuration
 @EnableJpaRepositories

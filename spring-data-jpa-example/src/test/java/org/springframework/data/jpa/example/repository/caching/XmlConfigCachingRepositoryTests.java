@@ -15,23 +15,10 @@
  */
 package org.springframework.data.jpa.example.repository.caching;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.jpa.example.domain.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.test.context.ContextConfiguration;
 
 /**
- * User repository using Spring's caching abstraction.
- * 
- * @author Oliver Gierke
  * @author Thomas Darimont
  */
-public interface CachingUserRepository extends CrudRepository<User, Long> {
-
-	@Override
-	@CacheEvict("byUsername")
-	<S extends User> S save(S entity);
-
-	@Cacheable("byUsername")
-	User findByUsername(String username);
-}
+@ContextConfiguration(locations = "classpath:caching-repository-context.xml")
+public class XmlConfigCachingRepositoryTests extends AbstractCachingRepositoryTests {}

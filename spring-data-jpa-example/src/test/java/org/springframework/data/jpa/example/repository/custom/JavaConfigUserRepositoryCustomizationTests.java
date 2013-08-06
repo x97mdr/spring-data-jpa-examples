@@ -13,25 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.data.jpa.example.repository.caching;
+package org.springframework.data.jpa.example.repository.custom;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.jpa.example.domain.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.test.context.ContextConfiguration;
 
 /**
- * User repository using Spring's caching abstraction.
+ * Test class to run the tests using the {@link CustomRepositoryConfig} JavaConfig class.
  * 
- * @author Oliver Gierke
  * @author Thomas Darimont
  */
-public interface CachingUserRepository extends CrudRepository<User, Long> {
-
-	@Override
-	@CacheEvict("byUsername")
-	<S extends User> S save(S entity);
-
-	@Cacheable("byUsername")
-	User findByUsername(String username);
-}
+@ContextConfiguration(classes = CustomRepositoryConfig.class)
+public class JavaConfigUserRepositoryCustomizationTests extends AbstractUserRepositoryCustomizationTests {}

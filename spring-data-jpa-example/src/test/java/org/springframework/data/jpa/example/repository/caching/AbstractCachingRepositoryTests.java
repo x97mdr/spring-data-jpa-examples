@@ -26,7 +26,6 @@ import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.example.domain.User;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,16 +33,14 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration test to show how to use {@link Cacheable} with a Spring Data repository.
  * 
  * @author Oliver Gierke
+ * @author Thomas Darimont
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = CachingConfiguration.class)
 @Transactional
-public class CachingRepositoryTests {
+public abstract class AbstractCachingRepositoryTests {
 
-	@Autowired
-	CachingUserRepository repository;
-	@Autowired
-	CacheManager cacheManager;
+	@Autowired CachingUserRepository repository;
+	@Autowired CacheManager cacheManager;
 
 	@Test
 	public void cachesValuesReturnedForQueryMethod() {
