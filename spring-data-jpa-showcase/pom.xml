@@ -15,7 +15,7 @@
 	<description>Sample project showing how Spring Data JPA eases implementing repositories over a plain JPA/Spring approach</description>
 
 	<properties>
-		<querydsl.version>2.6.0</querydsl.version>
+		<querydsl.version>3.2.4</querydsl.version>
 	</properties>
 
 	<build>
