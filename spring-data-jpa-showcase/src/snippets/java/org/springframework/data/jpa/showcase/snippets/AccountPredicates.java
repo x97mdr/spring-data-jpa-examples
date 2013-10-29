@@ -20,6 +20,6 @@ public class AccountPredicates {
 	}
 
 	public static BooleanExpression expiresBefore(LocalDate date) {
-		return $.expiryDate.before(date.toDateMidnight().toDate());
+		return $.expiryDate.before(date.toDateTimeAtStartOfDay().toDate());
 	}
 }

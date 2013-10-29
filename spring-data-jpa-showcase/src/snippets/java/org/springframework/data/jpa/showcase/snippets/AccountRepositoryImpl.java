@@ -18,8 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 class AccountRepositoryImpl implements AccountRepositoryCustom {
 
-	@PersistenceContext
-	private EntityManager em;
+	@PersistenceContext private EntityManager em;
 
 	/*
 	 * (non-Javadoc)
@@ -32,7 +31,7 @@ class AccountRepositoryImpl implements AccountRepositoryCustom {
 		CriteriaQuery<Account> query = cb.createQuery(Account.class);
 		Root<Account> account = query.from(Account.class);
 
-		query.where(cb.lessThan(account.get("expiryDate").as(Date.class), reference.toDateMidnight().toDate()));
+		query.where(cb.lessThan(account.get("expiryDate").as(Date.class), reference.toDateTimeAtStartOfDay().toDate()));
 
 		for (Account each : em.createQuery(query).getResultList()) {
 			em.remove(each);

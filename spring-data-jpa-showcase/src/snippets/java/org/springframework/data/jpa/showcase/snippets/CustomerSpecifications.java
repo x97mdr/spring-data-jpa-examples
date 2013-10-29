@@ -36,7 +36,7 @@ public class CustomerSpecifications {
 				Root<Account> accounts = query.from(Account.class);
 				Path<Date> expiryDate = accounts.<Date> get("expiryDate");
 				Predicate customerIsAccountOwner = cb.equal(accounts.<Customer> get("customer"), root);
-				Predicate accountExpiryDateBefore = cb.lessThan(expiryDate, date.toDateMidnight().toDate());
+				Predicate accountExpiryDateBefore = cb.lessThan(expiryDate, date.toDateTimeAtStartOfDay().toDate());
 
 				return cb.and(customerIsAccountOwner, accountExpiryDateBefore);
 			}
