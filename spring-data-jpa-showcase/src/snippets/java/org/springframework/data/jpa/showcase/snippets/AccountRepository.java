@@ -6,12 +6,14 @@ import org.springframework.data.jpa.showcase.core.Account;
 import org.springframework.data.jpa.showcase.core.Customer;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * Repository to manage {@link Account} instances.
  * 
  * @author Oliver Gierke
  */
+@NoRepositoryBean
 public interface AccountRepository extends CrudRepository<Account, Long>, AccountRepositoryCustom,
 		QueryDslPredicateExecutor<Account> {
 

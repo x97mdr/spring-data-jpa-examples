@@ -10,7 +10,7 @@ Import-Package:
 Export-Template: 
  org.springframework.data.jpa.sample.*;version="${project.version}"
 Import-Template:
- javax.persistence.*;version="${jpa.version:[=.=.=,+1.0.0)}",
+ javax.persistence.*;version="[2.0.0,3.0.0)",
  org.aopalliance.aop;version="[1.0,2.0)",
  org.springframework.*;version="${spring.version:[=.=.=.=,+1.0.0)}",
  org.springframework.data.*;version="${project.version:[=.=.=.=,+1.0.0)}"
