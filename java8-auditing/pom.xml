@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.data.jpa.examples</groupId>
+		<artifactId>spring-data-jpa-examples-parent</artifactId>
+		<version>1.1.0.RELEASE</version>
+	</parent>
+
+	<artifactId>java8-auditing</artifactId>
+	<name>Spring Data JPA - Auditing on Java 8 and Spring 4</name>
+	
+	<properties>
+		<spring.version>4.0.1.BUILD-SNAPSHOT</spring.version>
+		<spring-data-jpa.version>1.5.0.BUILD-SNAPSHOT</spring-data-jpa.version>
+	</properties>
+	
+	<dependencies>
+		
+		<!-- TODO: Remove, once https://github.com/spring-projects/spring-boot/pull/184 gets accepted -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+	</dependencies>
+
+	<repositories>	
+		
+		<repository>
+			<id>spring-libs-snapshot</id>
+			<url>http://repo.spring.io/libs-snapshot</url>
+		</repository>
+		
+	</repositories>
+	
+</project>
