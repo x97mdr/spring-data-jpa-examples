@@ -15,8 +15,8 @@
 	-->
 	<jpa:auditing auditor-aware-ref="auditorAware" />
 	
-	<bean id="auditorAware" class="org.springframework.data.jpa.example.auditing.AuditorAwareImpl" />
+	<bean id="auditorAware" class="org.springframework.data.jpa.example.repository.auditing.AuditorAwareImpl" />
 
-	<jpa:repositories base-package="org.springframework.data.jpa.example.auditing" />
+	<jpa:repositories base-package="org.springframework.data.jpa.example.repository.auditing" />
 
 </beans>

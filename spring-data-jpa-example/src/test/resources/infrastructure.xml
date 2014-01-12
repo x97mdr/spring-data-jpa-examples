@@ -15,11 +15,10 @@
 				<property name="database" value="HSQL" />
 			</bean>
 		</property>
-		<property name="persistenceUnitName" value="jpa.sample" />
+		<property name="packagesToScan" value="org.springframework.data.jpa.example" />
+		<property name="mappingResources" value="META-INF/orm.xml" />
 	</bean>
 	
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />
 
 </beans>

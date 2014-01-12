@@ -15,26 +15,21 @@
  */
 package org.springframework.data.jpa.example.repository;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.example.domain.User;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author Thomas Darimont
  */
 @Configuration
-@EnableTransactionManagement
 public class InfrastructureConfig {
 
 	@Bean
@@ -43,26 +38,24 @@ public class InfrastructureConfig {
 	}
 
 	@Bean
-	public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
-		return new JpaTransactionManager(emf);
+	public JpaTransactionManager transactionManager() {
+		return new JpaTransactionManager();
 	}
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-		factoryBean.setPersistenceUnitName("jpa.sample");
-		factoryBean.setDataSource(dataSource());
-		factoryBean.setPackagesToScan(User.class.getPackage().getName());
-		return factoryBean;
-	}
 
-	@Bean
-	public JpaVendorAdapter jpaVendorAdapter() {
-		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-		jpaVendorAdapter.setDatabase(Database.HSQL);
-		jpaVendorAdapter.setShowSql(true);
-		jpaVendorAdapter.setGenerateDdl(true);
-		return jpaVendorAdapter;
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setDatabase(Database.HSQL);
+		vendorAdapter.setShowSql(true);
+		vendorAdapter.setGenerateDdl(true);
+
+		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+		factoryBean.setJpaVendorAdapter(vendorAdapter);
+		factoryBean.setDataSource(dataSource());
+		factoryBean.setPackagesToScan("org.springframework.data.jpa.example");
+		factoryBean.setMappingResources("META-INF/orm.xml");
+
+		return factoryBean;
 	}
 }
