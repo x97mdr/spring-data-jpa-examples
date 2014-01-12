@@ -1,9 +1,10 @@
 package org.springframework.data.jpa.showcase;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.data.jpa.showcase.AbstractShowcaseTest.TestConfig;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * @author Oliver Gierke
  */
-@ContextConfiguration
+@SpringApplicationConfiguration(classes = TestConfig.class)
 @Transactional
 public abstract class AbstractShowcaseTest extends AbstractTransactionalJUnit4SpringContextTests {
 
