@@ -17,7 +17,7 @@ package org.springframework.data.jpa.example.repository.simple;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.jpa.example.repository.InfrastructureConfig;
+import org.springframework.data.jpa.example.InfrastructureConfig;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the original author or authors.
+ * Copyright 2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.data.jpa.example.repository.custom;
+package org.springframework.data.jpa.example.repository.auditing;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.data.jpa.example.repository.InfrastructureConfig;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.jpa.example.InfrastructureConfig;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
- * Sample configuration to bootstrap Spring Data JPA through JavaConfig
- * 
- * @author Thomas Darimont
  * @author Oliver Gierke
  */
 @Configuration
-@ComponentScan
-@Import(InfrastructureConfig.class)
-@EnableJpaRepositories
-public class CustomRepositoryConfig {}
+@EnableAutoConfiguration
+@EnableJpaAuditing
+class AuditingConfiguration extends InfrastructureConfig {
+
+	@Bean
+	AuditorAwareImpl auditorAware() {
+		return new AuditorAwareImpl();
+	}
+}

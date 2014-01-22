@@ -15,11 +15,6 @@
  */
 package org.springframework.data.jpa.example.repository.auditing;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.example.repository.InfrastructureConfig;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
@@ -27,17 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
  * 
  * @author Oliver Gierke
  */
-@ContextConfiguration
+@ContextConfiguration(classes = AuditingConfiguration.class)
 public class JavaConfigAuditableUserSample extends AbstractAuditableUserSample {
 
-	@Configuration
-	@EnableJpaRepositories
-	@EnableJpaAuditing
-	static class Config extends InfrastructureConfig {
-
-		@Bean
-		AuditorAwareImpl auditorAware() {
-			return new AuditorAwareImpl();
-		}
-	}
 }

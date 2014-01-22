@@ -13,38 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.data.jpa.example.repository.caching;
-
-import java.util.Arrays;
+package org.springframework.data.jpa.example.repository.custom;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCache;
-import org.springframework.cache.support.SimpleCacheManager;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Java config to use Spring Data JPA alongside the Spring caching support.
+ * Sample configuration to bootstrap Spring Data JPA through JavaConfig
  * 
- * @author Oliver Gierke
  * @author Thomas Darimont
+ * @author Oliver Gierke
  */
 @Configuration
-@EnableCaching
 @EnableAutoConfiguration
-class CachingConfiguration {
-
-	@Bean
-	public CacheManager cacheManager() {
-
-		Cache cache = new ConcurrentMapCache("byUsername");
-
-		SimpleCacheManager manager = new SimpleCacheManager();
-		manager.setCaches(Arrays.asList(cache));
-
-		return manager;
-	}
-}
+public class CustomRepositoryConfig {}
