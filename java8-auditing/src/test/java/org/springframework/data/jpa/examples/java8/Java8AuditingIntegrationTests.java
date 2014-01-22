@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the original author or authors.
+ * Copyright 2013-2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,28 +18,18 @@ package org.springframework.data.jpa.examples.java8;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import javax.sql.DataSource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Integration test to show the usage of Java 8 date time APIs with Spring Data JPA auditing.
- * <p>
- * TODO: Move to @EnableAutoConfiguration when Boot 0.5 M8 is released
  * 
  * @author Oliver Gierke
  */
@@ -48,35 +38,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class Java8AuditingIntegrationTests {
 
 	@Configuration
-	@ComponentScan
+	@EnableAutoConfiguration
 	@EnableJpaRepositories
 	@EnableJpaAuditing
 	static class Config {
 
-		@Bean
-		LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-
-			HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-			vendorAdapter.setGenerateDdl(true);
-
-			LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-			factory.setJpaVendorAdapter(vendorAdapter);
-			factory.setPackagesToScan(getClass().getPackage().getName());
-			factory.setMappingResources("META-INF/orm.xml");
-			factory.setDataSource(dataSource);
-
-			return factory;
-		}
-
-		@Bean
-		DataSource dataSource() {
-			return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
-		}
-
-		@Bean
-		JpaTransactionManager transactionManager() {
-			return new JpaTransactionManager();
-		}
 	}
 
 	@Autowired CustomerRepository repository;

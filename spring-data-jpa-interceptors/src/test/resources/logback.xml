@@ -8,6 +8,7 @@
 	</appender>
 
 	<logger name="org.springframework" level="error" />
+	<logger name="org.springframework.aop.interceptor" level="trace" />
 
 	<root level="error">
 		<appender-ref ref="console" />
