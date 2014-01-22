@@ -15,10 +15,12 @@
  */
 package org.springframework.data.jpa.example.repository.simple;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
+
 /**
- *
  * @author Oliver Gierke
  */
-public class SimpleConfiguration {
-
-}
+@Configuration
+@EnableAutoConfiguration
+class SimpleConfiguration {}

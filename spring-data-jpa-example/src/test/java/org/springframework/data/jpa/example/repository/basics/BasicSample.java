@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the original author or authors.
+ * Copyright 2013-2014 the original author or authors.
  *
  * Licenseimport static org.junit.Assert.*;
 
@@ -28,7 +28,7 @@ import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.data.jpa.example.domain.User;
+import org.springframework.data.jpa.example.repository.simple.User;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
