@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the original author or authors.
+ * Copyright 2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,10 @@
  */
 package org.springframework.data.jpa.example.repository.simple;
 
-import org.springframework.test.context.ContextConfiguration;
-
 /**
- * @author Thomas Darimont
+ *
+ * @author Oliver Gierke
  */
-@ContextConfiguration(classes = SimpleConfiguration.class)
-public class JavaConfigSimpleUserRepositoryTests extends AbstractSimpleUserRepositoryTests {}
+public class SimpleConfiguration {
+
+}
