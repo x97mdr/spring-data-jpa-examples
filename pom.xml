@@ -76,7 +76,14 @@
 			<artifactId>hsqldb</artifactId>
 		</dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>4.3.0.Final</version>
+        </dependency>
+
+
+    </dependencies>
 
 	<repositories>
 		<repository>

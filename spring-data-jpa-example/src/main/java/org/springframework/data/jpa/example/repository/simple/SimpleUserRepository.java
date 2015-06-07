@@ -15,11 +15,11 @@
  */
 package org.springframework.data.jpa.example.repository.simple;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * Simple repository interface for {@link User} instances. The interface is used to declare so called query methods,
@@ -60,7 +60,7 @@ public interface SimpleUserRepository extends CrudRepository<User, Long> {
 
 	/**
 	 * Returns all users with the given name as first- or lastname. Makes use of the {@link Param} annotation to use named
-	 * parameters in queries. This makes the query to method relation much more refactoring safe as the order of the
+	 * parameters in queries. This makes the query to method relation much more refactoring safe as the customerOrder of the
 	 * method parameters is completely irrelevant.
 	 * 
 	 * @param name
